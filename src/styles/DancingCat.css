@@ -1,0 +1,329 @@
+.dancing-cat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 20px;
+}
+
+.dancing-cat {
+  margin: 40px 0;
+  transition: all 0.3s ease;
+}
+
+.cat-image {
+  width: 200px;
+  height: 200px;
+  display: block;
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+/* Dancing Animation - Active when 'dancing' class is present */
+.dancing-cat.dancing .cat-image {
+  animation: catDance 2s infinite ease-in-out;
+}
+
+/* Speed variations */
+.dancing-cat.dancing.speed-slow .cat-image {
+  animation: catDance 4s infinite ease-in-out;
+}
+
+.dancing-cat.dancing.speed-normal .cat-image {
+  animation: catDance 2s infinite ease-in-out;
+}
+
+.dancing-cat.dancing.speed-fast .cat-image {
+  animation: catDance 0.8s infinite ease-in-out;
+}
+
+/* Paused state */
+.dancing-cat.paused .cat-image {
+  animation-play-state: paused;
+  transform: scale(1) rotate(0deg) translateY(0px);
+}
+
+/* Main Dance Animation */
+@keyframes catDance {
+  0% {
+    transform: scale(1) rotate(0deg) translateY(0px);
+  }
+  
+  10% {
+    transform: scale(1.1) rotate(-5deg) translateY(-10px);
+  }
+  
+  20% {
+    transform: scale(0.95) rotate(5deg) translateY(-5px);
+  }
+  
+  30% {
+    transform: scale(1.05) rotate(-3deg) translateY(-15px);
+  }
+  
+  40% {
+    transform: scale(1) rotate(8deg) translateY(-8px);
+  }
+  
+  50% {
+    transform: scale(1.1) rotate(0deg) translateY(-20px);
+  }
+  
+  60% {
+    transform: scale(0.9) rotate(-8deg) translateY(-5px);
+  }
+  
+  70% {
+    transform: scale(1.05) rotate(3deg) translateY(-12px);
+  }
+  
+  80% {
+    transform: scale(1) rotate(-5deg) translateY(-8px);
+  }
+  
+  90% {
+    transform: scale(1.02) rotate(2deg) translateY(-5px);
+  }
+  
+  100% {
+    transform: scale(1) rotate(0deg) translateY(0px);
+  }
+}
+
+/* Controls Section */
+.controls {
+  margin: 30px 0 20px 0;
+}
+
+/* Speed Controls */
+.speed-controls {
+  margin: 25px 0;
+  text-align: center;
+}
+
+.speed-controls h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.speed-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.speed-button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.speed-button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.speed-button:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.speed-button.active {
+  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+  animation: activeSpeedGlow 2s infinite ease-in-out;
+}
+
+@keyframes activeSpeedGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 107, 107, 0.6);
+  }
+}
+
+.control-button {
+  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+  border: none;
+  border-radius: 25px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.control-button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.control-button:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.control-button.play {
+  background: linear-gradient(45deg, #4ECDC4, #44A08D);
+}
+
+.control-button.pause {
+  background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+}
+
+/* Dance Status */
+.dance-status {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.dance-status p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 15px 25px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: statusGlow 3s infinite ease-in-out;
+}
+
+.dance-counter {
+  font-size: 1rem !important;
+  background: rgba(76, 175, 80, 0.2) !important;
+  border: 1px solid rgba(76, 175, 80, 0.4) !important;
+}
+
+.keyboard-hint {
+  font-size: 0.9rem !important;
+  background: rgba(255, 193, 7, 0.2) !important;
+  border: 1px solid rgba(255, 193, 7, 0.4) !important;
+  animation: hintBlink 2s infinite ease-in-out !important;
+}
+
+@keyframes hintBlink {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes statusGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Hover effects for the cat */
+.dancing-cat:hover .cat-image {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.dancing-cat.paused:hover .cat-image {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cat-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .control-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+  
+  .speed-button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .speed-controls h3 {
+    font-size: 1.1rem;
+  }
+  
+  .speed-buttons {
+    gap: 10px;
+  }
+  
+  .dance-status p {
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
+  
+  .dancing-cat-container {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cat-image {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .control-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .dance-status p {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+  
+  .dancing-cat-container {
+    min-height: 50vh;
+  }
+}
+
+/* Accessibility - Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .dancing-cat.dancing .cat-image {
+    animation: catDanceReduced 3s infinite ease-in-out;
+  }
+  
+  @keyframes catDanceReduced {
+    0%, 100% {
+      transform: scale(1) translateY(0px);
+    }
+    50% {
+      transform: scale(1.05) translateY(-5px);
+    }
+  }
+  
+  .control-button:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .statusGlow,
+  .dancing-cat:hover .cat-image {
+    animation: none;
+    transform: none;
+  }
+}
